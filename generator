@@ -2,25 +2,32 @@
 
 SECONDS=0
 start=0
+
 #echo > log.txt "$SECONDS"
 [[ -e log.txt ]] || echo > log.txt "$SECONDS"
 
-SPOILER="I watched Avengers: Endgame."
+SPOILER="Spoiler Alert!"
 
 while ((1))
 do
+
 	if [[ $start != $SECONDS ]]
 	then
-		echo "$SECONDS"
-		echo >> log.txt "$SECONDS"
-		start=$SECONDS
-		
-		RAND=$RANDOM
-		if [[ $((RAND%3)) -eq 0 ]]
+		if [[ $((SECONDS%2)) == 0 ]] 
 		then
-			echo $SPOILER
-			echo >> log.txt "$SPOILER"
-			continue
+			echo "$SECONDS"
+			echo >> log.txt "$SECONDS"
+			start=$SECONDS
+		
+			RAND=$RANDOM
+			if [[ $((RAND%3)) -eq 0 ]]
+			then
+				echo $SPOILER
+				echo >> log.txt "$SPOILER"
+				continue
+		
+			fi
+	
 		fi
 	fi
 done
